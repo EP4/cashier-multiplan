@@ -23,6 +23,7 @@
         "symfony/http-kernel": "~2.7|~3.0|~4.0"
     },
     "require-dev": {
+        "brianium/paratest": "^0.15",
         "illuminate/http": "~5.3",
         "illuminate/routing": "~5.3",
         "illuminate/view": "~5.3",

@@ -4,3 +4,7 @@ composer.phar
 composer.lock
 .DS_Store
 Thumbs.db
+.idea/
+src/*.orig
+resources/views/*.orig
+tests/*.orig
