@@ -1,13 +1,20 @@
 <?php
 
-namespace Laravel\Cashier\Tests;
+namespace Jurihub\CashierMultiplan\Tests;
 
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Laravel\Cashier\Tests\Fixtures\WebhookControllerTestStub;
+use Jurihub\CashierMultiplan\Http\Controllers\WebhookController;
+use Jurihub\CashierMultiplan\Tests\Fixtures\WebhookControllerTestStub;
 
 class WebhookControllerTest extends PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        putenv('STRIPE_MODEL=\\Jurihub\\CashierMultiplan\\Tests\\Fixtures\\User');
+    }
+
     public function testProperMethodsAreCalledBasedOnStripeEvent()
     {
         $_SERVER['__received'] = false;
@@ -26,3 +33,4 @@ class WebhookControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 }
+

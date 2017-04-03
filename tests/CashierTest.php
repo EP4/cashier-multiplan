@@ -1,14 +1,14 @@
 <?php
 
-namespace Laravel\Cashier\Tests;
+namespace Jurihub\CashierMultiplan\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Jurihub\CashierMultiplan\Tests\Fixtures\CashierTestControllerStub;
+use Jurihub\CashierMultiplan\Tests\Fixtures\User;
 use PHPUnit_Framework_TestCase;
-use Laravel\Cashier\Tests\Fixtures\User;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Laravel\Cashier\Tests\Fixtures\CashierTestControllerStub;
 
 class CashierTest extends PHPUnit_Framework_TestCase
 {
@@ -18,6 +18,7 @@ class CashierTest extends PHPUnit_Framework_TestCase
             $dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
             $dotenv->load();
         }
+        putenv('STRIPE_MODEL=\\Jurihub\\CashierMultiplan\\Tests\\Fixtures\\User');
     }
 
     public function setUp()
