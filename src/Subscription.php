@@ -437,19 +437,24 @@ class Subscription extends Model
         // retrieves the subscription stored at Stripe
         $stripeSubscription = $this->asStripeSubscription();
 
-        // adds the new item at Stripe
-        $stripeSubscriptionItem = $stripeSubscription->items->create([
-            'plan' => $plan,
-            'prorate' => $prorate,
-            'quantity' => $quantity,
-        ]);
+        if ($this->hasItem($plan)) {
+            // increment the quantity
+            $this->subscriptionItem($plan)->incrementQuantity($quantity, $prorate);
+        } else {
+            // adds the new item at Stripe
+            $stripeSubscriptionItem = $stripeSubscription->items->create([
+                'plan' => $plan,
+                'prorate' => $prorate,
+                'quantity' => $quantity,
+            ]);
 
-        // saves the new item in the database
-        $this->subscriptionItems()->create([
-            'stripe_id' => $stripeSubscriptionItem->id,
-            'stripe_plan' => $plan,
-            'quantity' => $quantity,
-        ]);
+            // saves the new item in the database
+            $this->subscriptionItems()->create([
+                'stripe_id' => $stripeSubscriptionItem->id,
+                'stripe_plan' => $plan,
+                'quantity' => $quantity,
+            ]);
+        }
 
         return $this;
     }
@@ -469,16 +474,20 @@ class Subscription extends Model
             return $this;
         }
 
-        // retrieves the item stored at Stripe
-        $stripeItem = $item->asStripeSubscriptionItem();
+        if ($item->quantity > 1) {
+            $item->decrementQuantity(1, $prorate);
+        } else {
+            // retrieves the item stored at Stripe
+            $stripeItem = $item->asStripeSubscriptionItem();
 
-        // deletes the item at Stripe
-        $stripeItem->delete([
-            'prorate' => $prorate,
-        ]);
+            // deletes the item at Stripe
+            $stripeItem->delete([
+                'prorate' => $prorate,
+            ]);
 
-        // removes the item from the database
-        $item->delete();
+            // removes the item from the database
+            $item->delete();
+        }
 
         return $this;
     }
