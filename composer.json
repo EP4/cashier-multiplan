@@ -1,12 +1,12 @@
 {
-    "name": "jurihub/cashier-multiplan",
-    "version": "1.0.9",
+    "name": "cruxinator/cashier-multiplan",
+    "version": "1.1.0",
     "description": "Laravel Cashier Multiplan",
     "keywords": ["laravel", "stripe", "billing"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/cashier/issues",
-        "source": "https://github.com/laravel/cashier"
+        "issues": "https://github.com/cruxinator/cashier-multiplan/issues",
+        "source": "https://github.com/cruxinator/cashier-multiplan"
     },
     "authors": [
         {
@@ -14,10 +14,6 @@
             "email": "info@jurihub.fr"
         }
     ],
-    "dist": {
-        "url": "https://github.com/jurihub/cashier-multiplan/archive/1.0.9.zip",
-        "type": "zip"
-    },
     "require": {
         "php": ">=5.5.9",
         "dompdf/dompdf": "^0.8.0",
@@ -47,12 +43,9 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        },
         "laravel": {
             "providers": [
-                "Laravel\\Cashier\\CashierServiceProvider"
+                "Jurihub\\CashierMultiplan\\CashierServiceProvider"
             ]
         }
     },
