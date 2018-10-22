@@ -15,6 +15,11 @@
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
     <php>
         <env name="STRIPE_SECRET" value="sk_test_TRBBHE1surdGLAgWYDhuY50y"/>
         <env name="STRIPE_MODEL" value="Jurihub\CashierMultiplan\Tests\Fixtures\User"/>
