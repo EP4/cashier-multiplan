@@ -230,13 +230,20 @@ trait Billable
     /**
      * Invoice the billable entity outside of regular billing cycle.
      *
-     * @return \Stripe\Invoice|bool
+     * @param float $tax   Percentage tax to be added to the invoice
+     * @return bool|StripeInvoice
      */
-    public function invoice()
+    public function invoice($tax = null)
     {
         if ($this->stripe_id) {
             try {
-                return StripeInvoice::create(['customer' => $this->stripe_id], $this->getStripeKey())->pay();
+                $details = [];
+                $details['customer'] = $this->stripe_id;
+                if (null != $tax) {
+                    $details['tax_percent'] = $tax;
+                }
+
+                return StripeInvoice::create($details, $this->getStripeKey())->pay();
             } catch (StripeErrorInvalidRequest $e) {
                 return false;
             }
