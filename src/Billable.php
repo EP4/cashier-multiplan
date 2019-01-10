@@ -2,8 +2,10 @@
 
 namespace Jurihub\CashierMultiplan;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Schema;
 use InvalidArgumentException;
 use Stripe\Card as StripeCard;
 use Stripe\Token as StripeToken;
@@ -491,10 +493,17 @@ trait Billable
         if ($defaultCard) {
             $this->fillCardDetails($defaultCard)->save();
         } else {
-            $this->forceFill([
+            $no_expiry = !(Schema::hasColumn($this->getTable(), 'card_expiry_date'));
+            $payload = [
                 'card_brand' => null,
                 'card_last_four' => null,
-            ])->save();
+                'card_expiry_date' => null
+            ];
+            if ($no_expiry) {
+                unset($payload['card_expiry_date']);
+            }
+
+            $this->forceFill($payload)->save();
         }
 
         return $this;
@@ -542,12 +551,22 @@ trait Billable
      */
     protected function fillCardDetails($card)
     {
+        $no_expiry = !(Schema::hasColumn($this->getTable(), 'card_expiry_date'));
+
         if ($card instanceof StripeCard) {
             $this->card_brand = $card->brand;
             $this->card_last_four = $card->last4;
+
+            $expiry = Carbon::create($card->exp_year, $card->exp_month, 1, 0, 0, 0)->addMonth(1)->subSecond(1);
+            $this->card_expiry_date = $expiry;
         } elseif ($card instanceof StripeBankAccount) {
             $this->card_brand = 'Bank Account';
             $this->card_last_four = $card->last4;
+            $this->card_expiry_date = null;
+        }
+
+        if ($no_expiry) {
+            unset($this->card_expiry_date);
         }
 
         return $this;
