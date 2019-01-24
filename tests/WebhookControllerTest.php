@@ -12,7 +12,7 @@ class WebhookControllerTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        putenv('STRIPE_MODEL=\\Jurihub\\CashierMultiplan\\Tests\\Fixtures\\User');
+        putenv('STRIPE_MODEL=\\Laravel\\Cashier\\Tests\\Fixtures\\User');
     }
 
     public function testProperMethodsAreCalledBasedOnStripeEvent()
