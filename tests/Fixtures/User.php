@@ -1,8 +1,8 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Tests\Fixtures;
+namespace Laravel\Cashier\Tests\Fixtures;
 
-use Jurihub\CashierMultiplan\Billable;
+use Laravel\Cashier\Billable;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class User extends Eloquent

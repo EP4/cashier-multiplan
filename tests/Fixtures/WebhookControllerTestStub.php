@@ -1,8 +1,8 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Tests\Fixtures;
+namespace Laravel\Cashier\Tests\Fixtures;
 
-use Jurihub\CashierMultiplan\Http\Controllers\WebhookController;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 
 class WebhookControllerTestStub extends WebhookController
 {

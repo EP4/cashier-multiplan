@@ -1,6 +1,6 @@
 <?php
 
-namespace Jurihub\CashierMultiplan;
+namespace Laravel\Cashier;
 
 use Carbon\Carbon;
 use Dompdf\Dompdf;

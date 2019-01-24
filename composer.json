@@ -1,5 +1,5 @@
 {
-    "name": "cruxinator/cashier-multiplan",
+    "name": "ep4/cashier-multiplan",
     "version": "1.1.0",
     "description": "Laravel Cashier Multiplan",
     "keywords": ["laravel", "stripe", "billing"],

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Http\Middleware;
+namespace Laravel\Cashier\Http\Middleware;
 
 use Closure;
 use Stripe\WebhookSignature;

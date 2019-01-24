@@ -1,11 +1,11 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Tests;
+namespace Laravel\Cashier\Tests;
 
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Jurihub\CashierMultiplan\Http\Controllers\WebhookController;
-use Jurihub\CashierMultiplan\Tests\Fixtures\WebhookControllerTestStub;
+use Laravel\Cashier\Http\Controllers\WebhookController;
+use Laravel\Cashier\Tests\Fixtures\WebhookControllerTestStub;
 
 class WebhookControllerTest extends PHPUnit_Framework_TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Tests;
+namespace Laravel\Cashier\Tests;
 
 use Mockery as m;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Config\Repository as Config;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Jurihub\CashierMultiplan\Http\Middleware\VerifyWebhookSignature;
+use Laravel\Cashier\Http\Middleware\VerifyWebhookSignature;
 
 final class VerifyWebhookSignatureTest extends PHPUnit_Framework_TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Jurihub\CashierMultiplan\Tests;
+namespace Laravel\Cashier\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Jurihub\CashierMultiplan\Tests\Fixtures\CashierTestControllerStub;
-use Jurihub\CashierMultiplan\Tests\Fixtures\User;
+use Laravel\Cashier\Tests\Fixtures\CashierTestControllerStub;
+use Laravel\Cashier\Tests\Fixtures\User;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Eloquent\Model as Eloquent;
