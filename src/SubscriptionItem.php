@@ -86,7 +86,7 @@ class SubscriptionItem extends Model
      */
     public function decrementQuantity($count = 1, $prorate = true)
     {
-        $this->updateQuantity(max(1, $this->quantity - $count), $prorate);
+        $this->updateQuantity(max(0, $this->quantity - $count), $prorate);
 
         return $this;
     }
