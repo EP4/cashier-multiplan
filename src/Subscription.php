@@ -168,7 +168,7 @@ class Subscription extends Model
      */
     public function decrementQuantity($count = 1)
     {
-        $this->updateQuantity(max(1, $this->quantity - $count));
+        $this->updateQuantity(max(0, $this->quantity - $count));
 
         return $this;
     }
@@ -465,7 +465,7 @@ class Subscription extends Model
      * @param string $plan The removed plan's ID
      * @return $this
      */
-    public function removeItem($plan, $prorate = true)
+    public function removeItem($plan, $prorate = true, $quantity = 1)
     {
         $item = $this->subscriptionItems()->where('stripe_plan', $plan)->first();
 
@@ -474,8 +474,8 @@ class Subscription extends Model
             return $this;
         }
 
-        if ($item->quantity > 1) {
-            $item->decrementQuantity(1, $prorate);
+        if ($item->quantity > 1 && $item->quantity !== $quantity) {
+            $item->decrementQuantity($quantity, $prorate);
         } else {
             // retrieves the item stored at Stripe
             $stripeItem = $item->asStripeSubscriptionItem();
