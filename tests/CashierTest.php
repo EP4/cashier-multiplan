@@ -18,7 +18,7 @@ class CashierTest extends PHPUnit_Framework_TestCase
             $dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
             $dotenv->load();
         }
-        putenv('STRIPE_MODEL=\\Jurihub\\CashierMultiplan\\Tests\\Fixtures\\User');
+        putenv('STRIPE_MODEL=\\Laravel\\Cashier\\Tests\\Fixtures\\User');
     }
 
     public function setUp()
