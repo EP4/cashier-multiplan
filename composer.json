@@ -34,18 +34,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Jurihub\\CashierMultiplan\\": "src/"
+            "Laravel\\Cashier\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Jurihub\\CashierMultiplan\\Tests\\": "tests/"
+            "Laravel\\Cashier\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Jurihub\\CashierMultiplan\\CashierServiceProvider"
+                "Laravel\\Cashier\\CashierServiceProvider"
             ]
         }
     },
