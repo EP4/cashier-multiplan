@@ -62,7 +62,7 @@ class MultisubscriptionBuilder extends SubscriptionBuilder
         $subscription = $this->owner->subscriptions()->create([
             'name' => $this->name,
             'stripe_id' => $stripeSubscription->id,
-            'stripe_plan' => '',
+            'stripe_plan' => $stripeSubscription->items->data[0]->plan->id,
             'quantity' => 0,
             'trial_ends_at' => $trialEndsAt,
             'ends_at' => null,
