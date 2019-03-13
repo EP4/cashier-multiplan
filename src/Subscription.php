@@ -354,18 +354,9 @@ class Subscription extends Model
             throw new LogicException('Unable to resume subscription that is not within grace period.');
         }
 
-        if (!$this->subscriptionItems->isEmpty()) {
-            throw new LogicException("Cannot update using plan parameter when multiple plans exist on the subscription. Updates must be made to individual items instead.");
-        }
-
         $subscription = $this->asStripeSubscription();
 
         $subscription->cancel_at_period_end = false;
-
-        // To resume the subscription we need to set the plan parameter on the Stripe
-        // subscription object. This will force Stripe to resume this subscription
-        // where we left off. Then, we'll set the proper trial ending timestamp.
-        $subscription->plan = $this->stripe_plan;
 
         if ($this->onTrial()) {
             $subscription->trial_end = $this->trial_ends_at->getTimestamp();
