@@ -465,7 +465,7 @@ class Subscription extends Model
             return $this;
         }
 
-        if ($item->quantity > 1 && $item->quantity !== $quantity) {
+        if (($this->subscriptionItems()->count() === 1 && $item->quantity === 1) || ($item->quantity > 1 && $item->quantity !== $quantity)) {
             $item->decrementQuantity($quantity, $prorate);
         } else {
             // retrieves the item stored at Stripe
